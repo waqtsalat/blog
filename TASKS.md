@@ -11,7 +11,11 @@
 7. ✓ AIO/AEO SEO structure (TL;DR, FAQs, citations, schemas)
 8. ✓ JSON-LD schemas (Article, FAQPage, HowTo)
 9. ✓ AI-generated images with alt text (7 images)
-10. ✓ Favicon from app
+10. ✓ Favicon from app (SVG)
+11. ✓ System fonts only (no web fonts)
+12. ✓ Hashtags added
+13. ✓ Content rules documented (CONTENT_RULES.md)
+14. ✓ App logo as blog header
 
 ## Remaining Tasks
 
