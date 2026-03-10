@@ -1,0 +1,9 @@
+{{/* Image render hook - adds relURL to image paths */}}
+{{ $url := .Destination }}
+{{ $alt := .Text | plainify }}
+{{ $title := .Title }}
+{{/* Remove leading slash for relURL to work correctly */}}
+{{ if hasPrefix $url "/" }}
+  {{ $url = strings.TrimPrefix "/" $url }}
+{{ end }}
+<img src="{{ $url | relURL }}" alt="{{ $alt }}" {{ with $title }}title="{{ $title }}"{{ end }} loading="lazy">
