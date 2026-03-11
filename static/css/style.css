@@ -78,6 +78,9 @@ header {
   top: 0;
   z-index: 100;
   box-shadow: var(--shadow-2);
+  min-height: 64px;
+  height: 64px;
+  flex-shrink: 0;
 }
 
 header nav {
@@ -89,6 +92,7 @@ header nav {
   align-items: center;
   flex-wrap: wrap;
   gap: var(--space-md);
+  min-height: 64px;
 }
 
 header nav .brand {
@@ -142,7 +146,8 @@ main {
   max-width: 900px;
   margin: 0 auto;
   padding: var(--space-xl) var(--space-lg);
-  min-height: calc(100vh - 200px);
+  min-height: calc(100vh - 64px);
+  display: block;
 }
 
 /* ============================================
@@ -217,7 +222,9 @@ main {
 
 /* Make entire card clickable */
 .post-card-link {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   color: inherit;
   text-decoration: none;
 }
@@ -238,13 +245,18 @@ main {
 }
 
 .post-card-image {
+  position: relative;
   width: 100%;
-  height: 200px;
-  overflow: hidden;
+  aspect-ratio: 16 / 9;
   background: var(--primary-bg);
+  overflow: hidden;
+  flex-shrink: 0;
 }
 
 .post-card-image img {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -339,8 +351,10 @@ article.post {
 
 /* Cover Image */
 .post-cover {
+  position: relative;
   width: 100%;
-  height: 300px;
+  aspect-ratio: 16 / 9;
+  background: var(--primary-bg);
   overflow: hidden;
   border-radius: var(--radius-lg);
   margin-bottom: var(--space-xl);
@@ -348,6 +362,9 @@ article.post {
 }
 
 .post-cover img {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -1039,7 +1056,7 @@ footer a:hover {
 
 .related-card img {
   width: 100%;
-  height: 140px;
+  aspect-ratio: 16 / 9;
   object-fit: cover;
   background: var(--primary-bg);
 }
@@ -1072,27 +1089,14 @@ footer a:hover {
 /* ============================================
    CORE WEB VITALS - CLS PREVENTION
    ============================================ */
-/* Reserve space for images to prevent layout shift */
-.post-card-image {
-  aspect-ratio: 16 / 9;
-  background: var(--primary-bg);
-}
-
-.post-card-image img {
-  aspect-ratio: 16 / 9;
-}
-
-.post-cover {
-  aspect-ratio: 16 / 9;
-}
-
-.post-cover img {
-  aspect-ratio: 16 / 9;
-}
-
-.related-card img {
-  aspect-ratio: 16 / 9;
-}
+/* All aspect-ratio and CLS fixes are now integrated into the main CSS rules above.
+ * - Header: fixed 64px height with flex-shrink: 0
+ * - Main: min-height calc(100vh - 64px)
+ * - Post cards: aspect-ratio 16/9 with absolute positioned images
+ * - Cover images: aspect-ratio 16/9 with absolute positioned images
+ * - Related cards: aspect-ratio 16/9 with object-fit cover
+ * - All image containers have placeholder backgrounds
+ */
 
 /* Content images maintain their natural aspect ratio */
 article.post .content img {
