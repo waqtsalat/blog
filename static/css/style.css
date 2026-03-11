@@ -351,6 +351,7 @@ article.post {
 
 /* Cover Image */
 .post-cover {
+  display: block;
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
