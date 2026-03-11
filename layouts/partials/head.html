@@ -36,27 +36,15 @@
 <meta property="og:url" content="{{ .Permalink }}">
 <meta property="og:site_name" content="{{ .Site.Title }}">
 <meta property="og:locale" content="{{ .Site.Language.Lang }}">
-{{ if .IsPage }}
-<meta property="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
-<meta property="article:modified_time" content="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}">
-{{ with .Params.author }}
-<meta property="article:author" content="{{ . }}">
-{{ end }}
-{{ range .Params.tags }}
-<meta property="article:tag" content="{{ . }}">
-{{ end }}
-{{ end }}
 
 {{/* Open Graph Image */}}
-{{ $ogImage := "" }}
-{{ with .Params.image }}
-  {{ $ogImage = . | absURL }}
-{{ else with .Params.cover }}
-  {{ $ogImage = . | absURL }}
+{{ if .Params.image }}
+<meta property="og:image" content="{{ .Params.image | absURL }}">
+{{ else if .Params.cover }}
+<meta property="og:image" content="{{ .Params.cover | absURL }}">
 {{ else }}
-  {{ $ogImage = "images/blog-og.png" | absURL }}
+<meta property="og:image" content="{{ "images/blog-og.png" | absURL }}">
 {{ end }}
-<meta property="og:image" content="{{ $ogImage }}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="{{ .Title }}">
@@ -67,12 +55,20 @@
 <meta name="twitter:creator" content="@waqtsalat">
 <meta name="twitter:title" content="{{ .Title }}">
 <meta name="twitter:description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
-<meta name="twitter:image" content="{{ $ogImage }}">
+
+{{/* Twitter Image */}}
+{{ if .Params.image }}
+<meta name="twitter:image" content="{{ .Params.image | absURL }}">
+{{ else if .Params.cover }}
+<meta name="twitter:image" content="{{ .Params.cover | absURL }}">
+{{ else }}
+<meta name="twitter:image" content="{{ "images/blog-og.png" | absURL }}">
+{{ end }}
 
 {{/* Additional SEO Tags */}}
 <meta name="robots" content="index, follow">
 <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 
 {{ with .Keywords }}
-<meta name="keywords" content="{{ delimit . ", " }}">
+<meta name="keywords" content="{{ . }}">
 {{ end }}
