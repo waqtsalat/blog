@@ -1,47 +1,13 @@
-{{ define "main" }}
-<div class="hero">
-  <h1>{{ .Title }}</h1>
-  <p>{{ .Site.Params.description }}</p>
-</div>
-
-<section class="posts-section">
-  <h2>{{ i18n "latestPosts" | default "Latest Posts" }}</h2>
-
-  {{ $pages := .Site.RegularPages }}
-  
-  {{ if $pages }}
-    {{ range $index, $page := first 10 $pages }}
-    <article class="post-card">
-      <a href="{{ $page.Permalink }}" class="post-card-link">
-        {{ with $page.Params.image }}
-        <div class="post-card-image">
-          {{ $loading := "lazy" }}
-          {{ $fetchpriority := "low" }}
-          {{ if eq $index 0 }}
-            {{ $loading = "eager" }}
-            {{ $fetchpriority = "high" }}
-          {{ end }}
-          {{ partial "optimized-image.html" (dict
-            "src" .
-            "alt" $page.Title
-            "loading" $loading
-            "fetchpriority" $fetchpriority
-            "width" 800
-            "height" 450
-          )}}
-        </div>
-        {{ end }}
-        <div class="post-card-content">
-          <h3>{{ $page.Title }}</h3>
-          <time datetime="{{ $page.Date.Format "2006-01-02" }}">{{ $page.Date | time.Format ":date_medium" }}</time>
-          {{ with $page.Description }}<p class="description">{{ . }}</p>{{ end }}
-          <span class="read-more">{{ i18n "readMore" | default "Read more" }} →</span>
-        </div>
-      </a>
-    </article>
-    {{ end }}
-  {{ else }}
-    <p>{{ i18n "noPosts" | default "No posts yet. Check back soon!" }}</p>
-  {{ end }}
-</section>
-{{ end }}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>WaqtSalat Blog - مدونة وقت الصلاة</title>
+    <meta http-equiv="refresh" content="0; url=https://waqtsalat.github.io/blog/ar/">
+    <link rel="canonical" href="https://waqtsalat.github.io/blog/ar/">
+    <script>window.location.href = 'https://waqtsalat.github.io/blog/ar/' + window.location.hash;</script>
+</head>
+<body>
+    <p>Redirecting to Arabic version... <a href="https://waqtsalat.github.io/blog/ar/">Click here if not redirected</a></p>
+</body>
+</html>
