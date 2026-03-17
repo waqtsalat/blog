@@ -9,5 +9,12 @@
 </head>
 <body>
     <p>Redirecting to Arabic version... <a href="https://waqtsalat.github.io/blog/ar/">Click here if not redirected</a></p>
+    <title>{{ .Site.Title }}</title>
+    <meta http-equiv="refresh" content="0; url={{ "/ar/" | absURL }}">
+    <link rel="canonical" href="{{ "/ar/" | absURL }}">
+    <script>window.location.href = '{{ "/ar/" | absURL }}' + window.location.hash;</script>
+</head>
+<body>
+    <p>Redirecting to Arabic version... <a href="{{ "/ar/" | absURL }}">Click here if not redirected</a></p>
 </body>
 </html>
